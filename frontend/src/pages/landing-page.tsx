@@ -10,6 +10,7 @@ import {
   Mic2,
   Play,
   Sparkles,
+  Star,
   UploadCloud,
   Users,
 } from "lucide-react";
@@ -31,6 +32,32 @@ const timeline = [
   { width: "30%", opacity: "opacity-75" },
 ] as const;
 
+const testimonials: Array<{
+  name: string;
+  role: string;
+  content: string;
+  rating: number;
+}> = [
+  {
+    name: "Priya Sharma",
+    role: "Content Creator",
+    content: "Dubzy helped me reach Tamil and Telugu audiences seamlessly. My engagement increased by 300%!",
+    rating: 5,
+  },
+  {
+    name: "Rajesh Kumar",
+    role: "Educator",
+    content: "Finally, a tool that understands Indian languages. My educational videos now reach every corner of India.",
+    rating: 5,
+  },
+  {
+    name: "Ananya Desai",
+    role: "YouTube Creator",
+    content: "The quality of voiceovers is incredible. It feels like I'm speaking directly to my viewers in their language.",
+    rating: 5,
+  },
+];
+
 export function LandingPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-(--color-bg) text-(--color-text)">
@@ -39,12 +66,13 @@ export function LandingPage() {
         <div className="absolute -top-40 -left-40 size-80 rounded-full bg-(--color-saffron) opacity-10 blur-3xl animate-float" />
         <div className="absolute -top-20 -right-20 size-60 rounded-full bg-(--color-green) opacity-10 blur-3xl animate-float" style={{ animationDelay: "2s" }} />
         <div className="absolute bottom-20 left-1/3 size-40 rounded-full bg-(--color-saffron) opacity-5 blur-2xl animate-float" style={{ animationDelay: "4s" }} />
+        <div className="absolute top-1/2 left-1/2 size-96 rounded-full bg-(--color-green) opacity-5 blur-3xl animate-float" style={{ animationDelay: "1s" }} />
       </div>
 
       <nav className="landing-nav mx-auto flex max-w-7xl items-center justify-between px-5 md:px-8 lg:px-10 glass backdrop-blur-sm">
         <Brand />
         <div className="flex items-center gap-2 sm:gap-5">
-          <a className="hidden text-sm text-(--color-text-dim) transition hover:text-(--color-text) sm:block" href="#how-it-works">How it works</a>
+          <a className="hidden text-sm text-(--color-text-dim) transition hover:text-(--color-saffron) sm:block" href="#how-it-works">How it works</a>
           <Link className="text-sm font-medium transition hover:text-(--color-saffron)" to="/auth">Sign in</Link>
           <Link className="ui-button ui-button-tricolor min-h-11 px-3 sm:px-4" to="/auth"><span className="sm:hidden">Start</span><span className="hidden sm:inline">Start a project</span></Link>
         </div>
@@ -139,6 +167,25 @@ export function LandingPage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="bg-(--color-panel) py-20">
+        <div className="mx-auto max-w-7xl px-5 md:px-8 lg:px-10">
+          <motion.h2 
+            className="text-center font-serif text-3xl leading-[1.02] tracking-[-0.03em] sm:text-4xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Loved by <span className="tricolor-text">Indian creators</span>
+          </motion.h2>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-(--color-text) text-(--color-surface)">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-10 px-5 py-16 md:flex-row md:items-end md:px-8 md:py-20 lg:px-10">
           <div>
@@ -158,6 +205,30 @@ export function LandingPage() {
         <p>Indian-language video dubbing solutions for independent creators and educators.</p>
       </footer>
     </main>
+  );
+}
+
+function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
+  return (
+    <motion.div
+      className="glass-strong rounded-lg p-6"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+    >
+      <div className="mb-3 flex gap-1">
+        {Array.from({ length: testimonial.rating }).map((_, i) => (
+          <Star key={i} className="size-4 fill-(--color-saffron) text-(--color-saffron)" />
+        ))}
+      </div>
+      <p className="text-sm leading-7 text-(--color-text-dim)">"{testimonial.content}"</p>
+      <div className="mt-4">
+        <p className="font-semibold text-(--color-text)">{testimonial.name}</p>
+        <p className="text-xs text-(--color-muted)">{testimonial.role}</p>
+      </div>
+    </motion.div>
   );
 }
 
