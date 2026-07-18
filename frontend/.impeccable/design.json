@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-11T11:20:00+05:30",
+  "title": "Design System: DubStudio",
+  "extensions": {
+    "colorMeta": {
+      "gallery-ground": { "role": "neutral", "displayName": "Gallery Ground", "canonical": "#f5f4f0", "tonalRamp": ["#272725", "#484845", "#6d6c68", "#91908a", "#b7b6b0", "#dedcd5", "#efeee9", "#f5f4f0"] },
+      "studio-surface": { "role": "neutral", "displayName": "Studio Surface", "canonical": "#ffffff", "tonalRamp": ["#262626", "#484848", "#6b6b6b", "#919191", "#b8b8b8", "#dedede", "#f2f2f2", "#ffffff"] },
+      "editorial-ink": { "role": "neutral", "displayName": "Editorial Ink", "canonical": "#11110f", "tonalRamp": ["#11110f", "#30302c", "#555550", "#777771", "#999992", "#bcbcb5", "#deddd8", "#f4f4f0"] },
+      "translation-blue": { "role": "primary", "displayName": "Translation Blue", "canonical": "#536aa7", "tonalRamp": ["#18213d", "#27365b", "#384b7a", "#536aa7", "#7489c1", "#9eadd5", "#c9d2e8", "#eef0f6"] },
+      "success": { "role": "semantic", "displayName": "Success", "canonical": "#4b705d", "tonalRamp": ["#14251d", "#294334", "#3b594a", "#4b705d", "#72927f", "#9cb4a5", "#c9d8cf", "#edf3ef"] },
+      "warning": { "role": "semantic", "displayName": "Warning", "canonical": "#8b6c35", "tonalRamp": ["#2c200d", "#4a3618", "#684d25", "#8b6c35", "#aa8c59", "#c5ad80", "#dfd0ad", "#f4ecda"] },
+      "failure": { "role": "semantic", "displayName": "Failure", "canonical": "#a64139", "tonalRamp": ["#36110e", "#5d211c", "#823028", "#a64139", "#c0645c", "#d58d87", "#e8bbb7", "#f7e9e7"] },
+      "selection": { "role": "neutral", "displayName": "Selection Wash", "canonical": "#eef0f6", "tonalRamp": ["#18213d", "#27365b", "#384b7a", "#536aa7", "#7489c1", "#9eadd5", "#c9d2e8", "#eef0f6"] },
+      "video-canvas": { "role": "neutral", "displayName": "Video Canvas", "canonical": "#171715", "tonalRamp": ["#171715", "#30302d", "#51514e", "#74746f", "#999993", "#bdbdb7", "#dfdfda", "#f4f4f0"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Editorial Display", "purpose": "Landing-page statements only." },
+      "headline": { "displayName": "Editorial Headline", "purpose": "Brand-supporting statements and entry moments." },
+      "title": { "displayName": "Product Title", "purpose": "Product sections and primary controls." },
+      "body": { "displayName": "Body", "purpose": "Explanatory and instructional copy." },
+      "label": { "displayName": "Operational Label", "purpose": "Identifiers, timestamps, and metadata." }
+    },
+    "shadows": [
+      { "name": "transient-lift", "value": "0 18px 48px rgba(21,23,19,0.16)", "purpose": "Snackbars and temporary feedback only." },
+      { "name": "administrative-offset", "value": "10px 10px 0 rgba(21,23,19,0.12)", "purpose": "Existing admin sign-in panel only." }
+    ],
+    "motion": [
+      { "name": "state-transition", "value": "160ms ease-out", "purpose": "Hover, focus, and compact state feedback." },
+      { "name": "brand-reveal", "value": "660ms cubic-bezier(.2,.7,.2,1)", "purpose": "Selective landing-page entrance only; never product task UI." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The compact, high-contrast action used to start a workflow.",
+      "html": "<button class=\"ds-btn-primary\">Start processing</button>",
+      "css": ".ds-btn-primary{background:var(--color-text,#11110f);color:var(--color-surface,#fff);border:1px solid var(--color-text,#11110f);border-radius:0;padding:12px 16px;font:600 12px 'Instrument Sans',system-ui,sans-serif;transition:background-color 160ms,border-color 160ms}.ds-btn-primary:hover{background:#30302c;border-color:#30302c}.ds-btn-primary:focus-visible{outline:2px solid var(--color-accent,#536aa7);outline-offset:3px}.ds-btn-primary:active{background:#11110f}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A bordered action for cancellation, download, and secondary choices.",
+      "html": "<button class=\"ds-btn-secondary\">Download</button>",
+      "css": ".ds-btn-secondary{background:var(--color-surface,#fff);color:var(--color-text,#11110f);border:1px solid var(--color-border,#dedcd5);border-radius:6px;padding:10px 16px;font:600 14px 'Instrument Sans',system-ui,sans-serif;transition:border-color 160ms}.ds-btn-secondary:hover{border-color:var(--color-text,#11110f)}.ds-btn-secondary:focus-visible{outline:2px solid var(--color-accent,#536aa7);outline-offset:3px}.ds-btn-secondary:active{background:var(--color-panel,#efeee9)}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A quiet field that becomes explicit on focus.",
+      "html": "<label class=\"ds-field\"><span>Email address</span><input type=\"email\" placeholder=\"creator@example.com\"></label>",
+      "css": ".ds-field{display:grid;gap:8px;color:var(--color-text-dim,#555550);font:500 12px 'JetBrains Mono',monospace}.ds-field input{background:var(--color-bg,#f5f4f0);color:var(--color-text,#11110f);border:1px solid var(--color-border,#dedcd5);border-radius:6px;padding:12px;font:400 14px 'Instrument Sans',system-ui,sans-serif;outline:none}.ds-field input::placeholder{color:var(--color-text-dim,#555550)}.ds-field input:hover{border-color:#b7b6b0}.ds-field input:focus-visible{border-color:var(--color-accent,#536aa7);box-shadow:0 0 0 2px #d9dfef}"
+    },
+    {
+      "name": "Workspace Navigation",
+      "kind": "nav",
+      "description": "A restrained top bar that keeps product identity and utilities visible.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-brand\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M2 10v4M6 6v12M10 3v18M14 8v8M18 5v14M22 10v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg>DubStudio</span><button>Sign out</button></nav>",
+      "css": ".ds-nav{height:56px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--color-border,#dedcd5);color:var(--color-text,#11110f);font-family:'Instrument Sans',system-ui,sans-serif}.ds-nav-brand{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}.ds-nav-brand svg{width:17px;height:17px}.ds-nav button{min-height:44px;background:transparent;border:0;color:var(--color-text-dim,#555550);font-size:12px;font-weight:500}.ds-nav button:hover{color:var(--color-text,#11110f)}.ds-nav button:focus-visible{outline:2px solid var(--color-accent,#536aa7);outline-offset:2px}"
+    },
+    {
+      "name": "Video Dropzone",
+      "kind": "custom",
+      "description": "The signature work surface for selecting a source video.",
+      "html": "<button class=\"ds-dropzone\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 16V4m0 0L7 9m5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><strong>Drop a video or browse</strong><span>The original file stays unchanged</span></button>",
+      "css": ".ds-dropzone{min-height:176px;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--color-surface,#fff);color:var(--color-text,#11110f);border:1px solid var(--color-border,#dedcd5);border-radius:0;font-family:'Instrument Sans',system-ui,sans-serif;transition:background-color 160ms,border-color 160ms}.ds-dropzone svg{width:18px;height:18px;color:var(--color-text-dim,#555550)}.ds-dropzone strong{font-size:14px;font-weight:500}.ds-dropzone span{font-size:12px;color:var(--color-text-dim,#555550)}.ds-dropzone:hover{background:var(--color-panel,#efeee9)}.ds-dropzone:focus-visible{outline:2px solid var(--color-accent,#536aa7);outline-offset:3px}.ds-dropzone:active{background:#e6e4dd}"
+    },
+    {
+      "name": "Processing Status",
+      "kind": "chip",
+      "description": "A text-and-color status marker for a dubbing job.",
+      "html": "<span class=\"ds-status\"><i></i>processing</span>",
+      "css": ".ds-status{display:inline-flex;align-items:center;gap:6px;color:var(--color-accent,#536aa7);font:400 12px 'Instrument Sans',system-ui,sans-serif}.ds-status i{width:6px;height:6px;border-radius:9999px;background:currentColor}.ds-status:hover{color:#425789}.ds-status:focus-visible{outline:2px solid var(--color-accent,#536aa7);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Localization Studio",
+    "overview": "DubStudio feels like a calm, polished studio where finished work is prepared for a new audience. The public experience uses an editorial serif and generous composition to frame the creator's work; authenticated surfaces become denser, quieter, and operational without losing the same material language. The system is refined and restrained, built from pale neutral work surfaces, strong ink, crisp rules, and a muted translation blue reserved for state and focus. It explicitly rejects generic AI SaaS presentation, intimidating editor complexity, and overly playful consumer styling.",
+    "keyCharacteristics": ["Editorial at the brand edge; precise and compact inside the product.", "Flat surfaces separated by tonal shifts and crisp one-pixel rules.", "Square structural containers paired with gently curved controls.", "Translation blue used for meaning, never decoration.", "Motion limited to clear feedback and short, purposeful transitions."],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Translation Blue is reserved for focus, active processing, and selected state; it never decorates neutral surfaces.", "section": "colors" },
+      { "name": "The Creator First Rule", "body": "Video and creator content supply visual richness. Product chrome remains restrained around it.", "section": "colors" },
+      { "name": "The Two Registers Rule", "body": "Serif belongs to brand expression and major entry moments; it is forbidden in routine controls, tables, labels, and task UI.", "section": "typography" },
+      { "name": "The Metadata Rule", "body": "Monospace communicates machine-derived information. It never substitutes for the interface's primary voice.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "If an element can be separated with a surface shift or one-pixel rule, a shadow is forbidden.", "section": "elevation" }
+    ],
+    "dos": ["Do use Gallery Ground, Studio Surface, and one-pixel Structural Lines to create hierarchy before introducing elevation.", "Do keep Translation Blue scarce and meaningful: focus, active processing, and selected state.", "Do pair every status color with a text label or icon so state never depends on color alone.", "Do use Instrument Serif to frame creator-facing brand moments and Instrument Sans throughout task workflows.", "Do keep product transitions between 150ms and 250ms and honor reduced-motion preferences."],
+    "donts": ["Don't make DubStudio resemble a generic AI SaaS template.", "Don't turn the workflow into an intimidating professional editing suite.", "Don't introduce overly playful consumer-app styling.", "Don't add rounded cards, decorative shadows, gradients, or glass effects to make empty space feel designed.", "Don't use Translation Blue as decoration or use Quiet Ink for body copy.", "Don't place serif typography in buttons, fields, tables, or routine product labels."]
+  }
+}

@@ -1,0 +1,8 @@
+services:
+  worker:
+    build: .
+    image: dubbing-worker:latest
+    container_name: dubbing-worker
+    env_file:
+      - .env
+    restart: unless-stopped
