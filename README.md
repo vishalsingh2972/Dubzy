@@ -107,37 +107,38 @@ For content creators and educators looking to reach global audiences, video dubb
 
 ```txt
 [Creator Video Upload] ──> [Express API] ──> (Fast HTTP 200 ACK) ──> [pg-boss Job Queue]
-                                                                                               │
-                                                                                    (Async Worker Processing)
-                                                                                               ▼
-                                                                                    [FFmpeg Audio Extraction]
-                                                                                               │
-                                                                                               ▼
-                                                                                    [Sarvam Vyaas ASR]
-                                                                                    (Speech-to-Text Transcription)
-                                                                                               │
-                                                                                               ▼
-                                                                                    [Sarvam Chhaya Translation]
-                                                                                    (Context-Aware Translation)
-                                                                                               │
-                                                                                               ▼
-                                                                                    [Sarvam Bulbul TTS]
-                                                                                    (Voice Cloning + Synthesis)
-                                                                                               │
-                                                                                               ▼
-                                                                                    [FFmpeg Video Muxing]
-                                                                                    (Merge Dubbed Audio + Video)
-                                                                                               │
-                                                                                               ▼
-                                                                                    [Cloudflare R2 Storage]
-                                                                                    (Permanent Media URL)
-                                                                                               │
-                                                                                               ▼
-                                                                                    [PostgreSQL State Update]
-                                                                                    (Job Status: Completed)
-                                                                                               │
-                                                                                               ▼
-                                                                                    [Creator Downloads Dubbed Video]
+                                                                                │
+                                                                    (Async Worker Processing)
+                                                                                │
+                                                                                ▼
+                                                                    [FFmpeg Audio Extraction]
+                                                                                │
+                                                                                ▼
+                                                                         [Sarvam Vyaas ASR]
+                                                               (Speech-to-Text Transcription)
+                                                                                │
+                                                                                ▼
+                                                                  [Sarvam Chhaya Translation]
+                                                                  (Context-Aware Translation)
+                                                                                │
+                                                                                ▼
+                                                                        [Sarvam Bulbul TTS]
+                                                                  (Voice Cloning + Synthesis)
+                                                                                │
+                                                                                ▼
+                                                                      [FFmpeg Video Muxing]
+                                                               (Merge Dubbed Audio + Video)
+                                                                                │
+                                                                                ▼
+                                                                      [Cloudflare R2 Storage]
+                                                                       (Permanent Media URL)
+                                                                                │
+                                                                                ▼
+                                                                    [PostgreSQL State Update]
+                                                                      (Job Status: Completed)
+                                                                                │
+                                                                                ▼
+                                                                 [Creator Downloads Dubbed Video]
 ```
 
 ---
