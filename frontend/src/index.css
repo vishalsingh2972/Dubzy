@@ -3,7 +3,33 @@
 
 @theme { --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif; --font-serif: 'Instrument Serif', ui-serif, Georgia, serif; --font-mono: 'JetBrains Mono', ui-monospace, monospace; }
 
-:root { --color-bg:#f5f4f0; --color-surface:#ffffff; --color-panel:#efeee9; --color-panel-strong:#e6e4dd; --color-border:#dedcd5; --color-text:#11110f; --color-text-dim:#555550; --color-muted:#91908a; --color-accent:#536aa7; --color-accent-hover:#425789; --color-accent-text:#ffffff; --color-blue:#536aa7; --color-selection:#eef0f6; --color-video:#171715; --color-success:#4b705d; color:var(--color-text); font-family:var(--font-sans); font-synthesis:none; }
+:root { 
+  --color-bg:#f5f4f0; 
+  --color-surface:#ffffff; 
+  --color-panel:#efeee9; 
+  --color-panel-strong:#e6e4dd; 
+  --color-border:#dedcd5; 
+  --color-text:#11110f; 
+  --color-text-dim:#555550; 
+  --color-muted:#91908a; 
+  --color-accent:#536aa7; 
+  --color-accent-hover:#425789; 
+  --color-accent-text:#ffffff; 
+  --color-blue:#536aa7; 
+  --color-selection:#eef0f6; 
+  --color-video:#171715; 
+  --color-success:#4b705d;
+  /* Indian Tricolor Colors */
+  --color-saffron:#FF9933;
+  --color-saffron-light:#FFB366;
+  --color-green:#138808;
+  --color-green-light:#1DD12F;
+  --color-indian-white:#FFFFFF;
+  --color-tricolor-gradient:linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+  color:var(--color-text); 
+  font-family:var(--font-sans); 
+  font-synthesis:none; 
+}
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; min-width:320px; min-height:100vh; background:var(--color-bg); }
@@ -33,4 +59,99 @@ button, a { -webkit-tap-highlight-color:transparent; }
 .landing-hero { isolation:isolate; }
 .reveal-up { animation:reveal 660ms cubic-bezier(.2,.7,.2,1) both; }
 @keyframes reveal { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+/* Glassmorphism Effects */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.glass-dark {
+  background: rgba(17, 17, 15, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tricolor Gradient Effects */
+.tricolor-gradient {
+  background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+}
+
+.tricolor-glow {
+  box-shadow: 0 0 30px rgba(255, 153, 51, 0.3), 0 0 60px rgba(19, 136, 8, 0.2);
+}
+
+.tricolor-text {
+  background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Background */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+@keyframes pulse-saffron {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0.4); }
+  50% { box-shadow: 0 0 0 15px rgba(255, 153, 51, 0); }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.4); }
+  50% { box-shadow: 0 0 0 15px rgba(19, 136, 8, 0); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-saffron {
+  animation: pulse-saffron 2s infinite;
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+/* Enhanced Button Styles */
+.ui-button-tricolor {
+  background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+  color: white;
+  border: none;
+  transition: all 300ms ease;
+}
+
+.ui-button-tricolor:hover {
+  background: linear-gradient(135deg, #FF6B1A 0%, #1DD12F 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 153, 51, 0.3);
+}
+
+/* Animated Gradient Background */
+.animated-gradient {
+  background: linear-gradient(-45deg, #FF9933, #FFFFFF, #138808, #FF9933);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 @media (prefers-reduced-motion:reduce) { *,::before,::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
