@@ -49,18 +49,18 @@ export function PendingPage() {
 
         <div className="my-auto grid gap-12 py-16 lg:grid-cols-[1.05fr_0.75fr] lg:items-center">
           <div>
-            <p className="text-sm font-medium text-(--color-text-dim)">Account received</p>
+            <p className="text-sm font-medium text-(--color-text-dim)">Account activated</p>
             <h1 className="mt-4 font-serif text-5xl leading-[0.98] tracking-[-0.035em] md:text-6xl">
-              Your studio is almost ready.
+              Your workspace is being prepared.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-(--color-text-dim)">
               {currentUser?.email
-                ? `${currentUser.email} has signed in successfully, but uploads stay locked until an admin approves the account.`
-                : 'You are signed in successfully, but uploads stay locked until an admin approves the account.'}
+                ? `${currentUser.email} has logged in successfully, but file uploads remain restricted until an administrator approves the account.`
+                : 'You have logged in successfully, but file uploads remain restricted until an administrator approves the account.'}
             </p>
             <div className="mt-8 flex items-center gap-3 border-t border-(--color-border) pt-5 text-sm text-(--color-text-dim)">
               <LoaderCircle className="size-4 animate-spin text-(--color-accent)" />
-              This page checks your approval status automatically.
+              This screen monitors your approval status continuously.
             </div>
           </div>
 
@@ -74,7 +74,7 @@ export function PendingPage() {
                 {currentUser?.approvalStatus ?? 'pending'}
               </p>
               <p className="mt-2 text-sm leading-6 text-(--color-text-dim)">
-                New accounts start as pending and unlock automatically after approval.
+                New accounts begin in a pending state and become accessible automatically once approved.
               </p>
             </article>
 
@@ -83,9 +83,9 @@ export function PendingPage() {
                 <Clock3 className="size-4" />
                 <span className="font-mono text-xs font-semibold">next step</span>
               </div>
-              <p className="text-2xl font-semibold">Wait here</p>
+              <p className="text-2xl font-semibold">Hold tight</p>
               <p className="mt-2 text-sm leading-6 text-(--color-text-dim)">
-                Once approved, this screen redirects you into `/workspace` without another sign-in.
+                After approval, this screen will redirect you to `/workspace` automatically—no need to sign in again.
               </p>
             </article>
           </div>

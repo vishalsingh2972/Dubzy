@@ -90,19 +90,19 @@ export function AdminUsersPage() {
 
         <div className="flex flex-col gap-6 py-9 sm:flex-row sm:items-end sm:justify-between sm:py-11">
           <div>
-            <h1 className="text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">User access</h1>
+            <h1 className="text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">User management</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-(--color-text-dim) sm:text-base">
-              Review new creators and educators before their workspace becomes available.
+              Examine incoming creators and educators before enabling their workspace access.
             </p>
           </div>
-          <div className="flex items-center gap-2 text-sm text-(--color-text-dim)">
+            <div className="flex items-center gap-2 text-sm text-(--color-text-dim)">
             <ShieldCheck className="size-4 text-(--color-success)" />
-            Admin workspace
+            Administrator panel
           </div>
         </div>
 
         <div className="mb-5 inline-flex border border-(--color-border) bg-(--color-surface) p-1" role="tablist" aria-label="User approval status">
-          {tabs.map((tab) => (
+              {tabs.map((tab) => (
             <button
               aria-selected={activeTab === tab}
               className={`min-h-10 px-4 text-sm font-semibold transition-colors ${
@@ -115,7 +115,7 @@ export function AdminUsersPage() {
               role="tab"
               type="button"
             >
-              {tab === 'pending' ? 'Pending' : 'Approved'}
+              {tab === 'pending' ? 'Awaiting review' : 'Approved'}
             </button>
           ))}
         </div>
@@ -154,9 +154,9 @@ export function AdminUsersPage() {
                   <thead className="border-b border-(--color-border) bg-(--color-panel)">
                     <tr className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-(--color-text-dim)">
                       <th className="w-[30%] px-5 py-3 font-medium" scope="col">User</th>
-                      <th className="w-[18%] px-4 py-3 font-medium" scope="col">Signed up</th>
+                      <th className="w-[18%] px-4 py-3 font-medium" scope="col">Registered</th>
                       <th className="w-[14%] px-4 py-3 font-medium" scope="col">Status</th>
-                      <th className="w-[20%] px-4 py-3 font-medium" scope="col">Approved</th>
+                      <th className="w-[20%] px-4 py-3 font-medium" scope="col">Approval date</th>
                       <th className="w-[18%] px-5 py-3 text-right font-medium" scope="col">Action</th>
                     </tr>
                   </thead>
@@ -181,10 +181,10 @@ export function AdminUsersPage() {
                             {user.approvalStatus === 'pending' ? (
                               <button className="ui-button ui-button-primary min-h-10 disabled:cursor-not-allowed disabled:opacity-60" disabled={isApproving} onClick={() => approveMutation.mutate(user.id)} type="button">
                                 {isApproving ? <LoaderCircle className="size-4 animate-spin" /> : <UserRoundPlus className="size-4" />}
-                                Approve
+                                Grant access
                               </button>
                             ) : (
-                              <span className="inline-flex items-center gap-2 text-sm font-semibold text-(--color-success)"><CheckCircle2 className="size-4" /> Access granted</span>
+                              <span className="inline-flex items-center gap-2 text-sm font-semibold text-(--color-success)"><CheckCircle2 className="size-4" /> Workspace activated</span>
                             )}
                           </td>
                         </tr>
@@ -213,7 +213,7 @@ export function AdminUsersPage() {
                         </div>
                         <div className="mt-4 flex items-center gap-2 text-xs text-(--color-text-dim)">
                           <Clock3 className="size-3.5" />
-                          {user.approvalStatus === 'pending' ? 'Requested' : 'Approved'} {formatDate(user.approvalStatus === 'pending' ? user.createdAt : user.approvedAt)}
+                          {user.approvalStatus === 'pending' ? 'Submitted' : 'Activated'} {formatDate(user.approvalStatus === 'pending' ? user.createdAt : user.approvedAt)}
                         </div>
                       </div>
                     </div>
@@ -233,9 +233,9 @@ export function AdminUsersPage() {
                           Approve
                         </button>
                       ) : (
-                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-(--color-success)">
+                          <span className="inline-flex items-center gap-2 text-sm font-semibold text-(--color-success)">
                           <CheckCircle2 className="size-4" />
-                          Workspace access granted
+                          Workspace activated
                         </span>
                       )}
                     </div>

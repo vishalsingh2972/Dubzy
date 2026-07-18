@@ -123,7 +123,7 @@ export function DubbingForm() {
     if (!videoFile) {
       setFileError("Please select a video file before submitting");
       showSnackbar({
-        message: "Add a video file before starting processing.",
+        message: "Attach a video file to begin the dubbing process.",
         variant: "error",
       });
       return;
@@ -145,13 +145,13 @@ export function DubbingForm() {
         setVideoFile(null);
         setFileError(null);
         showSnackbar({
-          message: "Video submitted. Recent jobs will update automatically.",
+          message: "Video uploaded successfully. Your recent jobs will refresh automatically.",
           variant: "success",
         });
       },
       onError: () => {
         showSnackbar({
-          message: "Unable to submit the video. Check the file and try again.",
+          message: "Failed to submit the video. Verify the file and try again.",
           variant: "error",
         });
       },
@@ -175,10 +175,10 @@ export function DubbingForm() {
   );
 }
 
-function DubbingFormHeader() {
+  function DubbingFormHeader() {
   return (
     <div className="flex flex-col gap-1 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-      <div><h2 className="text-base font-semibold tracking-[-0.01em] text-(--color-text)">Create a dubbed version</h2><p className="mt-1 text-xs text-(--color-text-dim)">One video, one target language</p></div>
+      <div><h2 className="text-base font-semibold tracking-[-0.01em] text-(--color-text)">Generate a dubbed version</h2><p className="mt-1 text-xs text-(--color-text-dim)">Single video, single target language</p></div>
       <p className="font-mono text-xs text-(--color-text-dim)">MP4 / MOV / WEBM · MAX 50 MB</p>
     </div>
   );
@@ -252,16 +252,16 @@ function VideoUploadDropzone({
   );
 }
 
-function EmptyVideoDropzone() {
+  function EmptyVideoDropzone() {
   return (
     <div className="flex flex-col items-center gap-4">
       <span className="flex size-11 items-center justify-center border border-(--color-border) bg-(--color-bg)"><UploadCloud className="size-4 text-[var(--color-text-dim)]" /></span>
       <div>
         <p className="text-base font-semibold text-[var(--color-text)]">
-          Drop your finished video here
+          Drop your completed video here
         </p>
         <p className="mt-1.5 text-sm text-[var(--color-text-dim)]">
-          or click anywhere to browse
+          or click to browse files
         </p>
       </div>
     </div>
@@ -293,7 +293,7 @@ function SelectedVideoFile({
   );
 }
 
-function TargetLanguageField({
+  function TargetLanguageField({
   control,
   error,
   disabled,
@@ -309,7 +309,7 @@ function TargetLanguageField({
         htmlFor="targetLanguage"
       >
         <Languages className="size-3.5" />
-        Target language
+        Destination language
       </label>
       <Controller
         control={control}
@@ -357,7 +357,7 @@ function AdvancedLanguageSettings({
         onClick={onToggle}
         aria-expanded={showAdvanced}
       >
-        <span>Source language <span className="ml-1 font-normal text-(--color-text-dim)">{showAdvanced ? "" : "Auto-detect"}</span></span>
+        <span>Source language <span className="ml-1 font-normal text-(--color-text-dim)">{showAdvanced ? "" : "Auto-identify"}</span></span>
         <ChevronDown
           className={cn(
             "size-4 text-(--color-text-dim) transition",
@@ -418,7 +418,7 @@ function SourceLanguageField({
   );
 }
 
-function SubmitButton({ isPending }: { isPending: boolean }) {
+  function SubmitButton({ isPending }: { isPending: boolean }) {
   return (
     <button
       type="submit"
@@ -431,7 +431,7 @@ function SubmitButton({ isPending }: { isPending: boolean }) {
           Uploading
         </span>
       ) : (
-        "Start processing"
+        "Begin processing"
       )}
     </button>
   );

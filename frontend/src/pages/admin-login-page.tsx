@@ -42,13 +42,13 @@ export function AdminLoginPage() {
 
           <div>
             <p className="text-sm font-medium text-(--color-text-dim)">
-              Internal approval portal
+              Restricted access zone
             </p>
             <h1 className="mt-4 font-serif text-5xl leading-tight md:text-6xl">
-              Review new accounts and unlock workspaces.
+              Evaluate new signups and activate workspaces.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-8 text-(--color-text-dim)">
-              This login is separate from normal user auth and only grants access to the approval list.
+              This portal is distinct from regular user authentication and provides access solely to the review queue.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export function AdminLoginPage() {
             className="ui-button ui-button-secondary w-fit"
             to="/"
           >
-            Back to site
+            Return to main site
           </Link>
         </div>
 
@@ -68,9 +68,9 @@ export function AdminLoginPage() {
           <div className="mb-8 flex items-start justify-between gap-4">
             <div>
               <p className="text-sm font-medium text-(--color-text-dim)">
-                Admin portal
+                Administrator portal
               </p>
-              <h2 className="mt-3 font-serif text-3xl">Sign in</h2>
+              <h2 className="mt-3 font-serif text-3xl">Login</h2>
             </div>
             <span className="flex size-10 items-center justify-center border border-(--color-border) bg-(--color-panel) text-(--color-text-dim)">
               <Shield className="size-4" />

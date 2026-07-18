@@ -16,16 +16,16 @@ type AuthMode = "sign-in" | "sign-up";
 
 const authCopy = {
   "sign-in": {
-    eyebrow: "Private studio",
-    title: `Sign in to ${APP_NAME}.`,
+    eyebrow: "Your studio",
+    title: `Access your ${APP_NAME} account.`,
     action: "Sign in",
-    alternate: "Create an account",
+    alternate: "Create new account",
   },
   "sign-up": {
-    eyebrow: "New studio",
-    title: "Create your workspace.",
+    eyebrow: "Fresh studio",
+    title: "Set up your workspace.",
     action: "Create account",
-    alternate: "Use an existing account",
+    alternate: "Use existing account",
   },
 } as const;
 
@@ -108,27 +108,27 @@ export function AuthPanel() {
           </div>
 
           <div className="my-14 max-w-xl lg:my-auto">
-            <p className="text-sm font-medium text-(--color-text-dim)">Your private localization studio</p>
+            <p className="text-sm font-medium text-(--color-text-dim)">Your personal dubbing studio</p>
             <h1 className="mt-5 font-serif text-5xl leading-[0.96] tracking-[-0.035em] md:text-6xl">
-              Your videos stay connected to you.
+              Your content remains linked to you.
             </h1>
             <p className="mt-5 max-w-md leading-7 text-(--color-text-dim)">
-              Uploads, progress, and completed language versions live in one focused workspace.
+              Uploads, progress, and finished language versions all reside in one dedicated workspace.
             </p>
             <ul className="mt-8 space-y-3 border-t border-(--color-border) pt-6 text-sm text-(--color-text-dim)">
-              <li className="flex items-center gap-3"><Check className="size-4" /> Finished versions stay organized with your account</li>
-              <li className="flex items-center gap-3"><Check className="size-4" /> Processing status updates automatically</li>
-              <li className="flex items-center gap-3"><Check className="size-4" /> Finished videos stay tied to your account</li>
+              <li className="flex items-center gap-3"><Check className="size-4" /> Completed versions stay organized within your account</li>
+              <li className="flex items-center gap-3"><Check className="size-4" /> Processing status refreshes automatically</li>
+              <li className="flex items-center gap-3"><Check className="size-4" /> Finished videos remain associated with your account</li>
             </ul>
           </div>
 
-          <Link
-            className="ui-button ui-button-secondary w-fit"
-            to="/"
-          >
-            <ArrowLeft className="size-4" />
-            Back to home
-          </Link>
+            <Link
+              className="ui-button ui-button-secondary w-fit"
+              to="/"
+            >
+              <ArrowLeft className="size-4" />
+              Return to homepage
+            </Link>
         </div>
 
         <div className="flex items-center justify-center bg-(--color-surface) px-5 py-12 md:px-8 lg:min-h-screen lg:px-12">
@@ -211,8 +211,8 @@ export function AuthPanel() {
 
           {mode === "sign-up" ? (
             <p className="mt-5 text-sm text-(--color-text-dim)">
-              New accounts can sign in immediately, but workspace access unlocks
-              after admin approval.
+              New accounts can log in right away, but workspace access becomes available
+              once an admin grants approval.
             </p>
           ) : null}
 

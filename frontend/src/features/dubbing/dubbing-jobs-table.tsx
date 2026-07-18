@@ -61,15 +61,15 @@ export function DubbingJobsTable() {
     <section aria-labelledby="source-videos-heading">
       <div className="flex flex-col gap-3 border-b border-(--color-border) pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 id="source-videos-heading" className="text-lg font-semibold tracking-[-0.015em] text-(--color-text)">Your source videos</h2>
-          <p className="mt-1 text-sm text-(--color-text-dim)">Each source keeps its language versions together.</p>
+          <h2 id="source-videos-heading" className="text-lg font-semibold tracking-[-0.015em] text-(--color-text)">Your original videos</h2>
+          <p className="mt-1 text-sm text-(--color-text-dim)">Each source maintains its language variants in one place.</p>
         </div>
         {hasActiveVersions ? <span className="inline-flex items-center gap-1.5 text-xs text-(--color-text-dim)"><LoaderCircle className="size-3.5 animate-spin text-(--color-blue)" />Live refresh</span> : null}
       </div>
 
-      {isLoading ? <State icon={<LoaderCircle className="size-4 animate-spin text-(--color-blue)" />} text="Loading source videos" /> : null}
-      {isError ? <State icon={<AlertCircle className="size-4 text-red-700" />} text={error instanceof Error ? error.message : "Unable to load source videos"} /> : null}
-      {!isLoading && !isError && sortedSources.length === 0 ? <State text="No source videos yet. Your first uploaded video will appear here." /> : null}
+      {isLoading ? <State icon={<LoaderCircle className="size-4 animate-spin text-(--color-blue)" />} text="Fetching your videos" /> : null}
+      {isError ? <State icon={<AlertCircle className="size-4 text-red-700" />} text={error instanceof Error ? error.message : "Unable to retrieve your videos"} /> : null}
+      {!isLoading && !isError && sortedSources.length === 0 ? <State text="No videos uploaded yet. Your first video will show up here." /> : null}
       {!isLoading && !isError ? <div>{sortedSources.map((source) => <SourceGroup key={source.id} source={source} onDownload={handleDownload} />)}</div> : null}
     </section>
   );
@@ -90,13 +90,13 @@ function SourceGroup({ source, onDownload }: { source: SourceVideo; onDownload: 
       <summary className="flex cursor-pointer list-none items-center gap-3 py-4 marker:content-none sm:px-3">
         <ChevronDown className="size-4 shrink-0 text-(--color-text-dim) transition group-open:rotate-180" aria-hidden="true" />
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-2"><h3 className="truncate text-sm font-semibold text-(--color-text)">{source.displayTitle}</h3>{active ? <span className="ui-status ui-status-active">active</span> : null}</div>
-          <p className="mt-1 text-xs text-(--color-text-dim)">{getDubbingLanguageName(source.sourceLanguage)} source · {source.versions.length} {source.versions.length === 1 ? "language version" : "language versions"} · {active ? "Processing activity" : `Last activity ${formatUpdatedTime(newestUpdate)}`}</p>
+          <div className="flex flex-wrap items-center gap-2"><h3 className="truncate text-sm font-semibold text-(--color-text)">{source.displayTitle}</h3>{active ? <span className="ui-status ui-status-active">processing</span> : null}</div>
+          <p className="mt-1 text-xs text-(--color-text-dim)">{getDubbingLanguageName(source.sourceLanguage)} source · {source.versions.length} {source.versions.length === 1 ? "language variant" : "language variants"} · {active ? "Currently processing" : `Last updated ${formatUpdatedTime(newestUpdate)}`}</p>
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <button
             type="button"
-            aria-label="Dub in another language"
+            aria-label="Add another language"
             className="inline-flex h-8 shrink-0 items-center gap-1.5 border border-(--color-border) px-2.5 text-xs font-medium text-(--color-text) outline-none transition enabled:hover:border-(--color-text) focus-visible:ring-2 focus-visible:ring-(--color-blue) focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45"
             disabled={active}
             aria-describedby={active ? `source-actions-disabled-${source.id}` : undefined}
@@ -107,7 +107,7 @@ function SourceGroup({ source, onDownload }: { source: SourceVideo; onDownload: 
             }}
           >
             <Languages className="size-3.5" aria-hidden="true" />
-            <span className="hidden sm:inline">Dub in another language</span>
+            <span className="hidden sm:inline">Add another language</span>
             <span className="sm:hidden">Add language</span>
           </button>
           <button
@@ -126,7 +126,7 @@ function SourceGroup({ source, onDownload }: { source: SourceVideo; onDownload: 
           </button>
         </div>
       </summary>
-      {active ? <p id={`source-actions-disabled-${source.id}`} className="px-3 pb-3 text-xs text-(--color-text-dim) sm:pl-10">Wait for the active language version to finish before adding another or deleting this source.</p> : null}
+      {active ? <p id={`source-actions-disabled-${source.id}`} className="px-3 pb-3 text-xs text-(--color-text-dim) sm:pl-10">Please wait for the current language variant to complete before adding another or removing this source.</p> : null}
       <div className="border-t border-(--color-border) bg-(--color-surface) px-3 sm:pl-10">
         {source.versions.map((version) => <VersionRow key={version.id} version={version} onDownload={onDownload} />)}
       </div>
@@ -149,11 +149,11 @@ function DeleteSourceDialog({ source, open, onOpenChange, mutation }: { source: 
   const confirmDelete = () => {
     mutation.mutate(source.id, {
       onSuccess: () => {
-        showSnackbar({ message: `${source.displayTitle} and all of its media were permanently deleted.`, variant: "success" });
+        showSnackbar({ message: `${source.displayTitle} and all associated files have been permanently removed.`, variant: "success" });
         onOpenChange(false);
       },
       onError: () => {
-        showSnackbar({ message: "The source was not deleted. Wait for active processing to finish, then try again.", variant: "error" });
+        showSnackbar({ message: "Unable to delete the source. Please wait for any active processing to complete before retrying.", variant: "error" });
       },
     });
   };
@@ -165,8 +165,8 @@ function DeleteSourceDialog({ source, open, onOpenChange, mutation }: { source: 
       onPointerDownOutside={(event) => { if (mutation.isPending) event.preventDefault(); }}
     >
       <DialogHeader>
-        <DialogTitle>Delete source video?</DialogTitle>
-        <DialogDescription>This permanently deletes the original upload, every language version, and all generated audio and video files for {source.displayTitle}. This cannot be undone.</DialogDescription>
+        <DialogTitle>Remove source video?</DialogTitle>
+        <DialogDescription>This action permanently deletes the original upload, all language variants, and every generated audio and video file associated with {source.displayTitle}. This operation cannot be reversed.</DialogDescription>
       </DialogHeader>
       {mutation.isError ? <p role="alert" className="text-sm leading-6 text-red-700">The source is still in your workspace. Wait for any active processing to finish and try again. If the problem continues, contact support.</p> : null}
       <DialogFooter>
@@ -192,11 +192,11 @@ function AddLanguageDialog({ source, open, onOpenChange }: { source: SourceVideo
   const submit = form.handleSubmit(({ targetLanguage }) => {
     mutation.mutate({ sourceId: source.id, targetLanguage }, {
       onSuccess: () => {
-        showSnackbar({ message: "Language version started. It will update automatically.", variant: "success" });
+        showSnackbar({ message: "Language variant initiated. Progress will update automatically.", variant: "success" });
         handleOpenChange(false);
       },
       onError: () => {
-        showSnackbar({ message: "Unable to add this language version. Review the workspace and try again.", variant: "error" });
+        showSnackbar({ message: "Failed to add this language variant. Please check the workspace and try again.", variant: "error" });
       },
     });
   });
@@ -204,37 +204,37 @@ function AddLanguageDialog({ source, open, onOpenChange }: { source: SourceVideo
   return <Dialog open={open} onOpenChange={handleOpenChange}>
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Dub in another language</DialogTitle>
-        <DialogDescription>Add a language version to {source.displayTitle} without uploading the source video again.</DialogDescription>
+        <DialogTitle>Add another language variant</DialogTitle>
+        <DialogDescription>Add a new language variant to {source.displayTitle} without re-uploading the source video.</DialogDescription>
       </DialogHeader>
       <div className="grid gap-4">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-(--color-text-dim)">Source video</p>
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-(--color-text-dim)">Original video</p>
           <p className="mt-1 text-sm font-medium text-(--color-text)">{source.displayTitle}</p>
         </div>
         <div>
-          <label className="text-xs font-medium uppercase tracking-[0.12em] text-(--color-text-dim)" htmlFor={`source-language-${source.id}`}>Source language</label>
+          <label className="text-xs font-medium uppercase tracking-[0.12em] text-(--color-text-dim)" htmlFor={`source-language-${source.id}`}>Original language</label>
           <input id={`source-language-${source.id}`} className="mt-1 h-10 w-full border border-(--color-border) bg-(--color-panel) px-3 text-sm text-(--color-text-dim)" value={getDubbingLanguageName(source.sourceLanguage) ?? source.sourceLanguage} readOnly />
         </div>
         <div>
-          <label className="text-xs font-medium uppercase tracking-[0.12em] text-(--color-text-dim)" htmlFor={`target-language-${source.id}`}>Target language</label>
+          <label className="text-xs font-medium uppercase tracking-[0.12em] text-(--color-text-dim)" htmlFor={`target-language-${source.id}`}>Destination language</label>
           <Controller control={form.control} name="targetLanguage" render={({ field }) => <select {...field} id={`target-language-${source.id}`} className="mt-1 h-10 w-full border border-(--color-border) bg-(--color-surface) px-3 text-sm" disabled={mutation.isPending}>
               <option value="">Select a target language</option>
               {DUBBING_LANGUAGES.map((language) => {
                 const status = representedLanguages.get(language.code);
                 const unavailable = Boolean(status) || language.code === source.sourceLanguage;
-                const suffix = status === "failed" ? " — retry separately" : status ? " — already added" : language.code === source.sourceLanguage ? " — source language" : "";
+                const suffix = status === "failed" ? " — retry separately" : status ? " — already added" : language.code === source.sourceLanguage ? " — original language" : "";
                 return <option key={language.code} value={language.code} disabled={unavailable}>{language.name}{suffix}</option>;
               })}
             </select>} />
           {form.formState.errors.targetLanguage ? <p className="mt-2 text-sm text-red-700">{form.formState.errors.targetLanguage.message}</p> : null}
-          {source.versions.some((version) => version.status === "failed") ? <p className="mt-2 text-xs text-(--color-text-dim)">Failed languages require the separate retry flow and cannot be added here.</p> : null}
+          {source.versions.some((version) => version.status === "failed") ? <p className="mt-2 text-xs text-(--color-text-dim)">Failed variants must be retried through the separate retry option and cannot be added here.</p> : null}
         </div>
-        {mutation.isError ? <p role="alert" className="text-sm text-red-700">The language version was not started. The refreshed workspace shows its latest state.</p> : null}
+        {mutation.isError ? <p role="alert" className="text-sm text-red-700">The language variant could not be initiated. Refresh the workspace to see the current status.</p> : null}
       </div>
       <DialogFooter>
-        <button type="button" className="h-10 border border-(--color-border) px-4 text-sm font-medium" disabled={mutation.isPending} onClick={() => handleOpenChange(false)}>Cancel</button>
-        <button type="button" className="inline-flex h-10 items-center justify-center gap-2 bg-(--color-text) px-4 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-45" disabled={!form.watch("targetLanguage") || mutation.isPending} onClick={() => void submit()}>{mutation.isPending ? <LoaderCircle className="size-4 animate-spin" /> : null}{mutation.isPending ? "Starting…" : "Start dubbing"}</button>
+        <button type="button" className="h-10 border border-(--color-border) px-4 text-sm font-medium" disabled={mutation.isPending} onClick={() => handleOpenChange(false)}>Dismiss</button>
+        <button type="button" className="inline-flex h-10 items-center justify-center gap-2 bg-(--color-text) px-4 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-45" disabled={!form.watch("targetLanguage") || mutation.isPending} onClick={() => void submit()}>{mutation.isPending ? <LoaderCircle className="size-4 animate-spin" /> : null}{mutation.isPending ? "Initializing…" : "Start dubbing"}</button>
       </DialogFooter>
     </DialogContent>
   </Dialog>;
