@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="saffron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9933"/>
+      <stop offset="100%" stop-color="#FF6B1A"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#138808"/>
+      <stop offset="100%" stop-color="#0D5E06"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle with subtle Indian flag colors -->
+  <circle cx="16" cy="16" r="15" fill="url(#saffron)" opacity="0.1"/>
+  
+  <!-- Audio waveform bars with Indian colors -->
+  <rect x="6" y="12" width="2.5" height="8" rx="1.25" fill="url(#saffron)"/>
+  <rect x="10" y="8" width="2.5" height="16" rx="1.25" fill="#FF9933"/>
+  <rect x="14" y="10" width="2.5" height="12" rx="1.25" fill="url(#green)"/>
+  <rect x="18" y="6" width="2.5" height="20" rx="1.25" fill="#138808"/>
+  <rect x="22" y="12" width="2.5" height="8" rx="1.25" fill="url(#saffron)"/>
+  
+  <!-- Decorative dots representing diversity -->
+  <circle cx="8" cy="22" r="1" fill="#FF9933" opacity="0.6"/>
+  <circle cx="16" cy="24" r="1" fill="#138808" opacity="0.6"/>
+  <circle cx="24" cy="22" r="1" fill="#FF9933" opacity="0.6"/>
+</svg>

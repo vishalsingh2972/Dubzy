@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   AudioLines,
-  AudioWaveform,
   BookOpen,
   Check,
   ChevronRight,
@@ -161,5 +160,5 @@ function AudienceRow({ title, copy, icon: Icon }: { title: string; copy: string;
 }
 
 export function Brand() {
-  return <Link className="flex items-center gap-2 text-(--color-text)" to="/"><span className="brand-mark"><AudioWaveform /></span><span className="text-sm font-semibold tracking-[-0.02em]">{APP_NAME}</span></Link>;
+  return <Link className="flex items-center gap-2 text-(--color-text)" to="/"><span className="brand-mark"><img src="/src/assets/dubzy-logo.svg" alt="Dubzy" className="size-8" /></span><span className="text-sm font-semibold tracking-[-0.02em]">{APP_NAME}</span></Link>;
 }

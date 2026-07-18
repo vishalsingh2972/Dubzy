@@ -1,4 +1,4 @@
-import { AudioWaveform, KeyRound, LoaderCircle, Mail, Shield } from 'lucide-react'
+import { KeyRound, LoaderCircle, Mail, Shield } from 'lucide-react'
 import { type FormEvent, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAdminLoginMutation } from '@/features/admin/use-admin-session'
@@ -31,8 +31,8 @@ export function AdminLoginPage() {
       <section className="mx-auto grid min-h-screen max-w-6xl lg:grid-cols-[1.05fr_0.95fr]">
         <div className="flex flex-col justify-between border-b border-(--color-border) px-5 py-7 md:px-8 lg:border-b-0 lg:border-r lg:px-10">
           <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center border border-(--color-text) bg-(--color-text) text-(--color-surface)">
-              <AudioWaveform className="size-5" />
+            <span className="brand-mark">
+              <img src="/src/assets/dubzy-logo.svg" alt="Dubzy" className="size-10" />
             </span>
             <div>
               <p className="font-serif text-2xl leading-none">{APP_NAME}</p>
